@@ -94,7 +94,7 @@ runs:
 
     - name: Get branch names
       id: branch-names
-      uses: lidofinance/branch-names-action@v796012203a066021edaf47a9381953d843444eacf
+      uses: lidofinance/branch-names-action@96012203a066021edaf47a9381953d843444eacf
 
     - name: Generate text report
       run: |
