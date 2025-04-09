@@ -85,16 +85,16 @@ runs:
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11'
+        python-version: "3.11"
 
     - name: Install pycobertura
-      uses: insightsengineering/pip-action@v2
+      uses: lidofinance/pip-action@d75b755131120e991a926cc9af72168c952780a0
       with:
         packages: pycobertura==3.0.0
 
     - name: Get branch names
       id: branch-names
-      uses: tj-actions/branch-names@v7
+      uses: lidofinance/branch-names-action@v796012203a066021edaf47a9381953d843444eacf
 
     - name: Generate text report
       run: |
@@ -165,7 +165,7 @@ runs:
       shell: bash
 
     - name: Push storage branch
-      uses: ad-m/github-push-action@master
+      uses: lidofinance/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa
       with:
         github_token: ${{ inputs.token }}
         branch: ${{ inputs.diff-storage }}
@@ -210,10 +210,10 @@ runs:
 
     # Use the output from the `coverage_percent` step
     - name: Generate the badge SVG image
-      uses: emibcn/badge-action@v2.0.3
+      uses: lidofinance/badge-action@808173dd03e2f30c980d03ee49e181626088eee8
       id: badge
       with:
-        label: 'Test Coverage'
+        label: "Test Coverage"
         status: "${{ steps.coverage_percent.outputs.coverage_total }}%"
         color: ${{
           steps.coverage_percent.outputs.coverage_total > 90 && 'green'              ||
@@ -238,7 +238,7 @@ runs:
 
     # Badge has to be committed and pushed to be used in comment
     - name: Push badges
-      uses: ad-m/github-push-action@master
+      uses: lidofinance/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa
       with:
         github_token: ${{ inputs.token }}
         branch: ${{ inputs.diff-storage }}
@@ -317,7 +317,7 @@ runs:
 
     - name: Post as comment
       if: contains(inputs.publish, 'true')
-      uses: marocchino/sticky-pull-request-comment@v2
+      uses: lidofinance/sticky-pull-request-comment-action@1b19b68425d166114da70fc34c3f66e4da1b5043
       with:
         GITHUB_TOKEN: ${{ inputs.token }}
         header: ${{ inputs.path }}
@@ -348,7 +348,7 @@ runs:
     - name: Push XML report to ${{ inputs.diff-storage }}
       if: >
         contains(inputs.diff, 'true')
-      uses: ad-m/github-push-action@master
+      uses: lidofinance/github-push-action@77c5b412c50b723d2a4fbc6d71fb5723bcd439aa
       with:
         github_token: ${{ inputs.token }}
         branch: ${{ inputs.diff-storage }}
